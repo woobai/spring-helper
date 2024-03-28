@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>fun.gangwan.boot</groupId>
+    <artifactId>fc-springcloud-starter</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <modules>
+        <!-- springcloud-starter-base -->
+        <module>springcloud-starter-base-parent</module>
+
+        <!-- springcloud-starter-data -->
+        <module>springcloud-starter-data-redis</module>
+
+
+    </modules>
+</project>

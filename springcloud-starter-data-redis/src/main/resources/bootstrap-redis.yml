@@ -1,0 +1,16 @@
+spring:
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PWD:ts123456}
+    timeout: 30000ms
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-wait: -1ms
+#    jedis:
+#      pool:
+#        max-idle: 8
+#        min-idle: 0
+#        max-wait: -1ms
