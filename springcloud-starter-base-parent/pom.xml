@@ -32,6 +32,9 @@
         <apache-commons.lang3.version>3.12.0</apache-commons.lang3.version>
         <apache-commons.pool2.version>2.11.1</apache-commons.pool2.version>
         <fastjackson.version>2.13.3</fastjackson.version>
+        <raven-logback.version>8.0.3</raven-logback.version>
+        <ip2region.version>1.7.2</ip2region.version>
+        <commons-io.version>2.11.0</commons-io.version>
 
     </properties>
 
@@ -92,6 +95,23 @@
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${fastjackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.getsentry.raven</groupId>
+                <artifactId>raven-logback</artifactId>
+                <version>${raven-logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.lionsoul</groupId>
+                <artifactId>ip2region</artifactId>
+                <version>${ip2region.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
             </dependency>
 
         </dependencies>

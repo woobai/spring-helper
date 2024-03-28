@@ -4,13 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fun.gangwan.boot</groupId>
-    <artifactId>fc-springcloud-starter</artifactId>
+    <artifactId>spring-helper</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
         <!-- springcloud-starter-base -->
         <module>springcloud-starter-base-parent</module>
+
+        <!-- springcloud-starter-common -->
+        <module>springcloud-starter-common-toolkits</module>
 
         <!-- springcloud-starter-data -->
         <module>springcloud-starter-data-redis</module>
