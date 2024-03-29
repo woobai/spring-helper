@@ -3,8 +3,8 @@ package fun.gangwan.common.toolkits;
 import java.util.regex.Pattern;
 
 /**
- * @className: ValidatorUtil
- * @description: 校验工具类
+ * ValidatorUtil
+ * 校验工具类
  **/
 public class ValidatorUtil {
     private ValidatorUtil() {

@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>fun.gangwan.boot</groupId>
+    <groupId>io.github.woobai.boot</groupId>
     <artifactId>springcloud-starter-base-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
 
@@ -31,7 +31,7 @@
         <lombok.version>1.18.20</lombok.version>
         <apache-commons.lang3.version>3.12.0</apache-commons.lang3.version>
         <apache-commons.pool2.version>2.11.1</apache-commons.pool2.version>
-        <fastjackson.version>2.13.3</fastjackson.version>
+        <fastjackson.version>2.16.1</fastjackson.version>
         <raven-logback.version>8.0.3</raven-logback.version>
         <ip2region.version>1.7.2</ip2region.version>
         <commons-io.version>2.11.0</commons-io.version>
@@ -52,7 +52,7 @@
 
             <!-- 自定义组件-->
             <dependency>
-                <groupId>fun.gangwan.data</groupId>
+                <groupId>io.github.woobai.data</groupId>
                 <artifactId>springcloud-starter-data-redis</artifactId>
                 <version>${springcloud.data.redis.version}</version>
             </dependency>
@@ -128,17 +128,18 @@
 
     <build>
         <plugins>
+            <!--   central发布插件    -->
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.4.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    <publishingServerId>central</publishingServerId>
+                    <tokenAuth>true</tokenAuth>
                 </configuration>
             </plugin>
+            <!--   source源码插件   官方要求 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -152,12 +153,11 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--   javadoc插件  官方要求  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
-                </configuration>
+                <version>2.9.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -171,6 +171,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.5</version>
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;   没有配置环境变量，可知道GnuPG路径 &ndash;&gt;-->
+<!--                    <executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>-->
+<!--                </configuration>-->
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -181,8 +185,42 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- 一键更新子模块版本号 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+
+
         </plugins>
     </build>
+
+    <developers>
+        <developer>
+            <name>bryan.wu</name>
+            <email>boxiu.wu@hotmail.com</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/woobai/spring-helper.git</connection>
+        <developerConnection>scm:git:ssh://github.com/woobai/spring-helper.git</developerConnection>
+        <url>https://github.com/woobai/spring-helper/tree/master</url>
+    </scm>
+
+    <url>https://github.com/woobai/spring-helper.git</url>
+
 
 
 

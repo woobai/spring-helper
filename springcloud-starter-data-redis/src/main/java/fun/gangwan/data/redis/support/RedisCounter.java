@@ -73,7 +73,7 @@ public class RedisCounter {
      * @param initValue 初始值
      * @param timeout 过期时间
      * @param unit 过期时间单位
-     * @return
+     * @return long
      */
     public Long increment(String key, Long initValue, long timeout, TimeUnit unit) {
         stringRedisTemplate.opsForValue().set(key, String.valueOf(initValue), timeout, unit);

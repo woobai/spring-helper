@@ -3,15 +3,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>fun.gangwan.data</groupId>
+	<groupId>io.github.woobai.data</groupId>
 	<artifactId>springcloud-starter-data-redis</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
+	<description>springcloud-starter-data-redis</description>
 
 	<parent>
-		<groupId>fun.gangwan.boot</groupId>
+		<groupId>io.github.woobai.boot</groupId>
 		<artifactId>springcloud-starter-base-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 		<relativePath/>
 	</parent>
 	
@@ -51,5 +52,28 @@
 		</dependency>
 
 	</dependencies>
+
+
+	<developers>
+		<developer>
+			<name>bryan.wu</name>
+			<email>boxiu.wu@hotmail.com</email>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/woobai/spring-helper.git</connection>
+		<developerConnection>scm:git:ssh://github.com/woobai/spring-helper.git</developerConnection>
+		<url>https://github.com/woobai/spring-helper/tree/master</url>
+	</scm>
+
+	<url>https://github.com/woobai/spring-helper.git</url>
 
 </project>

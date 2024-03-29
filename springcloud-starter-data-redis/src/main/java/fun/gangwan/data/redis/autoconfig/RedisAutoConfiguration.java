@@ -16,12 +16,8 @@ import javax.annotation.Resource;
 
 /**
  *
- * <br> RedisAutoConfiguration </br>
+ * RedisAutoConfiguration
  * <span> Redis自动配置组件</span>
- *
- * @author ZhouYi
- * @since 2021/08/26
- * @version 1.0.0
  *
  */
 @Slf4j
@@ -40,10 +36,10 @@ public class RedisAutoConfiguration {
 
     /**
      *
-     * @param redis
-     * @param redisPrefix
-     * @param validateConnection
-     * @return
+     * @param redis redis
+     * @param redisPrefix redisPrefix
+     * @param validateConnection validateConnection
+     * @return asd
      */
     @Bean
     public RedisUtils initRedis(StringRedisTemplate redis,

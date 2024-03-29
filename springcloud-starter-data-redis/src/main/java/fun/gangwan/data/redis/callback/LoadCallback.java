@@ -13,8 +13,6 @@ package fun.gangwan.data.redis.callback;
  * 从老框架迁移
  * </p>
  * 
- * @author 周易
- * @since 2021/08/26
  */
 public interface LoadCallback<T> {
     /**

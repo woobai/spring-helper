@@ -19,8 +19,6 @@ import java.util.Objects;
  * RedisTemplate的pipeline可以将多个命令缓存在客户端，等到一定数量后再一次性发送给Redis服务器，减少了Redis服务器的内存消耗。
  * RedisTemplate的pipeline可以保证命令的顺序性，批量返回操作结果，保证了数据的正确性。
  *
- * @author ZhouYi
- * @version 3.0.0
  *
  */
 @Slf4j
@@ -32,8 +30,8 @@ public class RedisPipelineTemplate {
 
     /**
      * pipeline 执行批量操作
-     * @param cmdList
-     * @return
+     * @param cmdList aa
+     * @return  aa
      */
     public List<Object> executePipeline(List<RedisCommand> cmdList) {
 

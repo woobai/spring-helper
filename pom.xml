@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>fun.gangwan.boot</groupId>
+    <groupId>io.github.woobai.boot</groupId>
     <artifactId>spring-helper</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <modules>
         <!-- springcloud-starter-base -->

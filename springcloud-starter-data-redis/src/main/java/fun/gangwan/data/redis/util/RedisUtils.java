@@ -28,8 +28,6 @@ import java.util.stream.Collectors;
  * Redis工具类
  * 为避免业务方代码太大改动，从老框架迁移
  *
- * @author 周易
- * @since 2021/08/26
  */
 @Slf4j
 public class RedisUtils {
@@ -97,8 +95,10 @@ public class RedisUtils {
     /**
      * 获取存储的信息
      *
-     * @param key
-     * @return clazz
+     * @param key key
+     * @param clazz clazz
+     * @param <T> clazz
+     * @return T class
      */
     public <T> T redisGetWithInstance(String key, Class<? extends T> clazz) {
 
@@ -135,7 +135,8 @@ public class RedisUtils {
     /**
      * 获取存储的信息
      *
-     * @param key
+     * @param key key
+     * @return string s
      */
     public String redisGet(String key) {
 
@@ -170,8 +171,9 @@ public class RedisUtils {
      * @param key redis key
      * @param callback 加载数据
      * @param expiredTime key过期时间ms
-     * @param clazz T
-     * @return T
+     * @param clazz aaa
+     * @param <T> aaa
+     * @return T AAA
      */
     public <T> T redisGetOrSet(String key, LoadCallback<T> callback, long expiredTime, Class<? extends T> clazz) {
         return redisGetOrSet(key, callback, expiredTime, GET_OR_SET_EXPIRED_TIME, clazz);
@@ -187,6 +189,7 @@ public class RedisUtils {
      * @param expiredTime key过期时间ms
      * @param waitLockTime 分布式锁的超时时间ms
      * @param clazz T
+     * @param <T> aaa
      * @return T
      */
     public <T> T redisGetOrSet(String key, LoadCallback<T> callback, long expiredTime, long waitLockTime,
@@ -231,8 +234,8 @@ public class RedisUtils {
     /**
      * 存储信息
      *
-     * @param key
-     * @param json
+     * @param key key
+     * @param json json
      */
     public void redisSet(String key, String json) {
         try {
@@ -258,10 +261,10 @@ public class RedisUtils {
     /**
      * 存储信息
      *
-     * @param key
-     * @param json
-     * @param timeout
-     * @param unit
+     * @param key key
+     * @param json json
+     * @param timeout timeout
+     * @param unit unit
      */
     public void redisSet(String key, String json, long timeout, TimeUnit unit) {
         try {
@@ -286,8 +289,8 @@ public class RedisUtils {
     /**
      * 存储信息
      *
-     * @param key
-     * @param json
+     * @param key key
+     * @param json json
      */
     public void redisSet(String key, Object json) {
 
@@ -313,10 +316,10 @@ public class RedisUtils {
     /**
      * 存储信息
      *
-     * @param key
-     * @param json
-     * @param timeout
-     * @param unit
+     * @param key key
+     * @param json json
+     * @param timeout timeout
+     * @param unit unit
      */
     public void redisSet(String key, Object json, long timeout, TimeUnit unit) {
 
@@ -343,8 +346,9 @@ public class RedisUtils {
     /**
      * hashSet
      *
-     * @param key
-     * @param json
+     * @param key key
+     * @param hashKey hashKey
+     * @param json json
      */
     public void redisHashSet(String key, String hashKey, String json) {
 
@@ -371,8 +375,9 @@ public class RedisUtils {
     /**
      * hashSet
      *
-     * @param key
-     * @param json
+     * @param key key
+     * @param hashKey hashKey
+     * @param json json
      */
     public void redisHashSet(String key, String hashKey, Object json) {
 
@@ -475,9 +480,9 @@ public class RedisUtils {
     /**
      * redisHashGet
      *
-     * @param key
-     * @param hashKey
-     * @return
+     * @param key key
+     * @param hashKey hashKey
+     * @return  a
      */
     public Object redisHashGet(String key, String hashKey) {
 
@@ -544,6 +549,7 @@ public class RedisUtils {
      * @param expiredTime key过期时间ms
      * @param waitLockTime 分布式锁的超时时间ms
      * @param clazz T
+     * @param <T> as
      * @return T
      */
     public <T> T redisHashGetOrSet(String key, String hashKey, LoadCallback<T> callback, long expiredTime,
@@ -590,7 +596,10 @@ public class RedisUtils {
     /**
      * redisHashGetWithInstance 获取存储的信息
      *
-     * @param key
+     * @param key key
+     * @param hashKey hashKey
+     * @param clazz clazz
+     * @param <T> t
      * @return clazz
      */
     public <T> T redisHashGetWithInstance(String key, String hashKey, Class<? extends T> clazz) {
@@ -634,6 +643,7 @@ public class RedisUtils {
      * @param key key
      * @param hashKeys hashKey集合,不能为空
      * @param clazz T
+     * @param <T> t
      * @return T集合，数据不存在时返回<code>null</code>
      */
     @SuppressWarnings("unchecked")
@@ -680,7 +690,7 @@ public class RedisUtils {
      * http://doc.redisfans.com/key/scan.html
      * 通过scan命令获取匹配的key集合
      * @param pattern 匹配规则
-     * @return
+     * @return asd
      */
     public Set<String> getKeysByScan(String pattern){
         return redis.execute(new RedisCallback<Set<String>>() {
@@ -707,9 +717,9 @@ public class RedisUtils {
     /**
      * http://doc.redisfans.com/key/scan.html
      * 通过HSCAN命令迭代哈希键中的keys
-     * @param hashKey
-     * @param matchPattern
-     * @return
+     * @param hashKey hashKey
+     * @param matchPattern matchPattern
+     * @return ad
      */
     public Set<String> getKeysByHScan(String hashKey, String matchPattern){
         Set<String> keys = new HashSet<>();
@@ -738,6 +748,7 @@ public class RedisUtils {
      *
      * @param key key
      * @param clazz T
+     * @param <T> T
      * @return T Map，数据不存在时返回<code>null</code>
      */
     public <T> Map<String, T> redisHashGetAllWithInstance(String key, Class<? extends T> clazz) {
@@ -778,9 +789,8 @@ public class RedisUtils {
     /**
      * redisHashGet
      *
-     * @param key
-     * @param hashKey
-     * @return
+     * @param key key
+     * @param hashKey hashKey
      */
     public void redisHashDelete(String key, String hashKey) {
 
@@ -811,8 +821,8 @@ public class RedisUtils {
     /**
      * 追加信息
      *
-     * @param key
-     * @param json
+     * @param key key
+     * @param json json
      */
     public void redisAppend(String key, String json) {
 
@@ -837,7 +847,7 @@ public class RedisUtils {
     /**
      * 删除信息
      *
-     * @param key
+     * @param key key
      */
     public void redisDelete(String key) {
 
@@ -893,8 +903,10 @@ public class RedisUtils {
     /**
      * 获取存储的信息转化为list
      *
-     * @param key
-     * @param clazz
+     * @param key key
+     * @param clazz clazz
+     * @param <T> t
+     * @return aa as
      */
     public <T> List<T> redisGetToList(String key, Class<T> clazz) {
 
@@ -934,6 +946,7 @@ public class RedisUtils {
      * @param callback 加载数据
      * @param expiredTime key过期时间ms
      * @param clazz T
+     * @param <T> s
      * @return T
      */
     public <T> List<T> redisGetOrSetList(String key, LoadCallback<List<T>> callback, long expiredTime,
@@ -951,6 +964,7 @@ public class RedisUtils {
      * @param expiredTime key过期时间ms
      * @param waitLockTime 分布式锁的超时时间ms
      * @param clazz T
+     * @param <T> T
      * @return T
      */
     @SuppressWarnings("unchecked")
@@ -992,10 +1006,12 @@ public class RedisUtils {
     }
 
     /**
-     * 以key -> hashkey的形式获取存储的数据
+     * 以key -- hashkey的形式获取存储的数据
      *
-     * @param key
-     * @param hashKey
+     * @param key key
+     * @param hashKey hashKey
+     * @param clazz clazz
+     * @param <T> t
      * @return clazz
      */
     public <T> List<T> redisHashGetToList(String key, String hashKey, Class<T> clazz) {
@@ -1041,6 +1057,7 @@ public class RedisUtils {
      * @param callback 加载数据
      * @param expiredTime key过期时间ms
      * @param clazz T
+     * @param <T> t
      * @return T
      */
     public <T> List<T> redisHashGetOrSetList(String key, String hashKey, LoadCallback<List<T>> callback,
@@ -1059,6 +1076,7 @@ public class RedisUtils {
      * @param expiredTime key过期时间ms
      * @param waitLockTime 分布式锁的超时时间ms
      * @param clazz T
+     * @param <T> t
      * @return T
      */
     @SuppressWarnings("unchecked")
@@ -1125,7 +1143,7 @@ public class RedisUtils {
      *     注意：脚手架3.0.0版本以后禁止使用该方法，请更换RedisCounter计数器工具类
      * </span>
      *
-     * @param key
+     * @param key key
      * @return 自增后的值
      */
     @Deprecated
@@ -1190,9 +1208,9 @@ public class RedisUtils {
      *     注意：脚手架3.0.0版本以后禁止使用该方法，请更换RedisCounter计数器工具类
      * </span>
      *
-     * @param key
+     * @param key key
      * @param value 初始值
-     * @return
+     * @return asd
      */
     @Deprecated
     public Long increment(String key, Long value) {
@@ -1221,11 +1239,11 @@ public class RedisUtils {
      *     注意：脚手架3.0.0版本以后禁止使用该方法，请更换RedisCounter计数器工具类
      * </span>
      *
-     * @param key
+     * @param key key
      * @param value 初始值
      * @param timeout 过期时间
      * @param unit 过期时间单位
-     * @return
+     * @return a
      */
     @Deprecated
     public Long increment(String key, Long value, long timeout, TimeUnit unit) {
@@ -1256,8 +1274,8 @@ public class RedisUtils {
      *     注意：脚手架3.0.0版本以后禁止使用该方法，请更换RedisCounter计数器工具类
      * </span>
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return a
      */
     @Deprecated
     public Long dncrement(String key) {
@@ -1319,11 +1337,11 @@ public class RedisUtils {
      *     注意：脚手架3.0.0版本以后禁止使用该方法，请更换RedisCounter计数器工具类
      * </span>
      *
-     * @param key
+     * @param key key
      * @param value 初始值
      * @param timeout 过期时间
      * @param unit 过期时间单位
-     * @return
+     * @return aa
      */
     @Deprecated
     public Long dncrement(String key, Long value, long timeout, TimeUnit unit) {
@@ -1355,8 +1373,8 @@ public class RedisUtils {
      *     注意：脚手架3.0.0版本以后禁止使用该方法，请更换RedisCounter计数器工具类
      * </span>
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return a
      */
     @Deprecated
     public Long getForConn(String key) {
@@ -1384,6 +1402,7 @@ public class RedisUtils {
      *
      * @param key 锁的key值
      * @param expiredTime 超时时间
+     * @return bool
      */
     public Boolean getLock(final String key, final long expiredTime) {
         return redis.execute(new RedisCallback<Boolean>() {
@@ -1462,7 +1481,7 @@ public class RedisUtils {
      * @param timeoutSeconds 锁过期时间
      * @param retryTimes 重试次数
      * @param retryInterval 重试间隔
-     * @return
+     * @return string
      */
     public String getAtomLock(String key, long timeoutSeconds, int retryTimes, long retryInterval) {
         try {
@@ -1510,6 +1529,7 @@ public class RedisUtils {
      *
      * @param key 锁的key值
      * @param expiredTime 超时时间
+     * @return str
      */
     public String getLockSimple(final String key, final long expiredTime) {
         return redis.execute((RedisCallback<String>) connection -> {
@@ -1563,9 +1583,9 @@ public class RedisUtils {
     /**
      * 获取计数信号量，用于处理限制并发访问同一资源的客户端数量
      *
-     * @param key
+     * @param key key
      * @param limit 允许并发访问总量
-     * @return
+     * @return boolean
      */
     public boolean getSemaphore(final String key, final int limit) {
         return getSemaphore(key, limit, 2000);
@@ -1574,9 +1594,10 @@ public class RedisUtils {
     /**
      * 获取计数信号量，用于处理限制并发访问同一资源的客户端数量
      *
-     * @param key
+     * @param key key
      * @param limit 允许并发访问总量
-     * @return
+     * @param expiredTime expiredTime
+     * @return boolean
      */
     public Boolean getSemaphore(final String key, final int limit, final long expiredTime) {
         return redis.execute((RedisCallback<Boolean>) connection -> {
@@ -1619,6 +1640,10 @@ public class RedisUtils {
 
     /**
      * 添加对象并同时设置失效时间
+     * @param key key
+     * @param expires expires
+     * @param value value
+     * @return asd
      */
     public boolean redisSetWithExpires(final String key, final Long expires, final String value) {
         redis.execute(new RedisCallback<Object>() {
@@ -1635,8 +1660,9 @@ public class RedisUtils {
     /**
      * 发布消息
      *
-     * @param channel
-     * @param message
+     * @param channel channel
+     * @param message message
+     * @return bool
      */
     public boolean publisher(String channel, String message) {
 
@@ -1656,7 +1682,7 @@ public class RedisUtils {
      * @param key key
      * @param timeout 超时时间
      * @param unit 时间单位
-     * @return
+     * @return bool
      */
     public boolean redisFireWall(String key, long timeout, TimeUnit unit) {
         String value = redisGet(key);
@@ -1758,7 +1784,7 @@ public class RedisUtils {
      * @param key 锁key
      * @param value 锁value
      * @param lockTimeMilliseconds 续约时间
-     * @return
+     * @return aaa
      */
     public boolean renewalLock(String key, String value, long lockTimeMilliseconds) {
         try {
