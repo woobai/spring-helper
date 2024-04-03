@@ -1,0 +1,96 @@
+<!-- 强依赖logback-base.xml -->
+<included>
+    <!-- 日志文件开关 -->
+    <springProperty scope="context" name="FILE_ENABLE" source="gw.boot.logfile.enable" defaultValue="true"/>
+    <!-- 日志文件保留个数 运维可注入参数 -->
+    <springProperty scope="context" name="LOG_FILE_MAX_HISTORY" source="gw.boot.logfile.maxHistory" defaultValue="10"/>
+    <!-- 日志文件占用磁盘阈值 运维可注入参数 -->
+    <springProperty scope="context" name="LOG_FILE_MAX_SIZE" source="gw.boot.logfile.maxGBSize" defaultValue="20"/>
+    <!-- 日志文件写入路径，可解决系统权限无法mkdir问题 -->
+    <springProperty scope="context" name="LOG_FILE_PATH" source="gw.boot.logfile.path" defaultValue="/data/logs/"/>
+    <!-- 每个日志文件磁盘占用阈值，单位MB -->
+    <springProperty scope="context" name="LOG_FILE_SINGLE_MAX_SIZE" source="gw.boot.logfile.singleMBSize" defaultValue="200"/>
+
+    <!-- logstash日志格式 -->
+    <property name="FILE_LOG_PATTERN" value="%d %-5level [%X{requestId}][%thread] %logger{5}[%L] - %msg%n"/>
+
+    <!-- 日志文件输出位置 默认linux环境情况下-->
+    <property name="LOG_PATH" value="${LOG_FILE_PATH}${APP_NAME}"/>
+    <!-- 日志文件输出位置 本地情况，针对macOS情况高本版权限问题，例如/Users/macName/Documents/logs/appName-->
+    <springProfile name="local">
+        <property name="LOG_PATH" value="${user.home}${LOG_FILE_PATH}${APP_NAME}"/>
+    </springProfile>
+
+    <if condition='Boolean.valueOf(p("FILE_ENABLE"))'>
+        <then>
+
+        <!-- info,warn 日志文件 -->
+        <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 正在记录的日志文件的路径及文件名 -->
+            <file>${LOG_PATH}/info.log</file>
+            <!--日志文件输出格式-->
+            <encoder>
+                <charset>${LOG_CHARSET}</charset>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+            <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>${LOG_FILE_SINGLE_MAX_SIZE}MB</maxFileSize>
+                <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+                <totalSizeCap>${LOG_FILE_MAX_SIZE}GB</totalSizeCap>
+            </rollingPolicy>
+            <!-- 此日志文件只记录info级别 -->
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <level>INFO</level>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+        </appender>
+
+        <!-- error 日志文件 -->
+        <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 正在记录的日志文件的路径及文件名 -->
+            <file>${LOG_PATH}/error.log</file>
+            <!--日志文件输出格式-->
+            <encoder>
+                <charset>${LOG_CHARSET}</charset>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+            <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>${LOG_FILE_SINGLE_MAX_SIZE}MB</maxFileSize>
+                <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+                <totalSizeCap>${LOG_FILE_MAX_SIZE}GB</totalSizeCap>
+            </rollingPolicy>
+            <!-- 此日志文件只记录ERROR级别的 -->
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <level>ERROR</level>
+                <!-- 只记录ERROR及以上日志 -->
+                <onMatch>ACCEPT</onMatch>
+                <!-- 不记录ERROR以下日志 -->
+                <onMismatch>DENY</onMismatch>
+            </filter>
+        </appender>
+
+        <appender name ="ASYNC_INFO_FILE" class= "ch.qos.logback.classic.AsyncAppender">
+            <!-- 默认情况下，discardingThreshold 的值为：discardingThreshold = queueSize / 5 -->
+            <discardingThreshold>0</discardingThreshold>
+            <!-- 当队列满了时，会阻塞业务线程，此时异步处理会变成同步等待；只有队列有可用容量时，业务线程才从阻塞状态恢复。 -->
+            <queueSize>500</queueSize>
+            <appender-ref ref="INFO_FILE"/>
+        </appender>
+
+        <appender name ="ASYNC_ERROR_FILE" class= "ch.qos.logback.classic.AsyncAppender">
+            <!-- 默认情况下，discardingThreshold 的值为：discardingThreshold = queueSize / 5 -->
+            <discardingThreshold>0</discardingThreshold>
+            <!-- 当队列满了时，会阻塞业务线程，此时异步处理会变成同步等待；只有队列有可用容量时，业务线程才从阻塞状态恢复。 -->
+            <queueSize>500</queueSize>
+            <appender-ref ref="ERROR_FILE"/>
+        </appender>
+
+        </then>
+    </if>
+
+</included>

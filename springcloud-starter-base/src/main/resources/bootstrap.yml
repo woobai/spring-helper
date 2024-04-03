@@ -1,0 +1,10 @@
+### 全局配置优先级
+### JVM options > apollo ns > bootstrap.properties/yml > application.properties/yml
+
+
+### bootstrap 优先级
+### bootstrap-app.properties/yml > bootstrap-{profile} > bootstrap-module.yml > bootstrap.properties/yml > application.properties/yml
+
+spring:
+  profiles:
+    include: ${spring.profiles.active}

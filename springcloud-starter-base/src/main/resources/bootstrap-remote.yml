@@ -1,0 +1,68 @@
+### Feign config
+feign:
+#  client:
+#    config:
+#      default:
+#        #默认1000
+#        connectTimeout: 2000
+#        #默认6000
+#        readTimeout: 30000
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled: true
+
+
+### Hystrix config
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+          semaphore:
+            #最大信号量 默认值10
+            maxConcurrentRequests: 1000
+          thread:
+            #熔断器超时时间 默认1000 hystrix的超时时间要大于(1 + 重试次数) * ribbon.ReadTimeout 较合理
+            timeoutInMilliseconds: 10000
+      fallback:
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 500
+      circuitBreaker:
+        #滑动窗口的大小，默认为20
+        requestVolumeThreshold: 500
+        #错误率
+        errorThresholdPercentage: 70
+        #时间窗口 触发短路的时间值，熔断器多久之后再次检测是否开启，期间会拒绝所有请求
+        sleepWindowInMilliseconds: 10000
+
+### Ribbon Config
+# 全局开关
+spring:
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+
+ribbon:
+  #eureka客户端ribbon刷新时间，默认30s
+  ServerListRefreshInterval: 2000
+  ConnectTimeout: 1000
+  #默认1000 该值会被FeignClient配置readTimeout覆盖
+  ReadTimeout: 5000
+  #是否所有操作都允许重试。默认值为false,注意：就算设置false GET请求还是会重试,需要服务端保证接口幂等
+  OkToRetryOnAllOperations: false
+  #连接超时或者拒绝是否重试
+  okToRetryOnConnectErrors: true
+  #当前实例最大重试次数，不包括首次调用。默认值为0 不重试
+  MaxAutoRetries: 0
+  #其他实例的最大重试次数，默认值为1 如果是mesh模式建议设置0
+  MaxAutoRetriesNextServer: 1
+
+

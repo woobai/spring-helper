@@ -11,6 +11,8 @@
     <modules>
         <!-- springcloud-starter-base -->
         <module>springcloud-starter-base-parent</module>
+        <module>springcloud-starter-base</module>
+        <module>springcloud-starter-base-facade</module>
 
         <!-- springcloud-starter-common -->
         <module>springcloud-starter-common-toolkits</module>

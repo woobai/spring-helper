@@ -21,7 +21,8 @@
         <maven.test.skip>true</maven.test.skip>
         <java.version>1.8</java.version>
         <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+        <spring-cloud-dependencies.version>Hoxton.SR12</spring-cloud-dependencies.version>
+        <spring-cloud.version>2.2.9.RELEASE</spring-cloud.version>
         <spring.version>5.2.15.RELEASE</spring.version>
 
         <!-- 内部组件版本 -->
@@ -36,6 +37,10 @@
         <raven-logback.version>8.0.3</raven-logback.version>
         <ip2region.version>1.7.2</ip2region.version>
         <commons-io.version>2.11.0</commons-io.version>
+        <orika.version>1.9.0</orika.version>
+        <knife4j.version>2.0.2</knife4j.version>
+        <pagehelper.version>5.1.8</pagehelper.version>
+        <pagehelper-starter.version>1.2.12</pagehelper-starter.version>
 
     </properties>
 
@@ -46,7 +51,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -113,6 +118,27 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.rakugakibox.spring.boot</groupId>
+                <artifactId>orika-spring-boot-starter</artifactId>
+                <version>${orika.version}</version>
             </dependency>
 
         </dependencies>

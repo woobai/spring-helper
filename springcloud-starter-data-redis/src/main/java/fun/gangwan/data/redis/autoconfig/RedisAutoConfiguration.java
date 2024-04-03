@@ -28,7 +28,7 @@ public class RedisAutoConfiguration {
 
     public static final String PREFIX = "spring.redis";
 
-    @Value("${fc.boot.dependency.version.redis:UNKNOWN}")
+    @Value("${gw.boot.dependency.version.redis:UNKNOWN}")
     private String pomVer;
 
     @Resource

@@ -1,0 +1,9 @@
+### Servlet Config
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true

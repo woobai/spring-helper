@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  fun.gangwan.base.facade.extend.orika.ConfigurableMapperFactory

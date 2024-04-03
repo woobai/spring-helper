@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 强制引入 -->
+    <include resource="logback/appender-base.xml" />
+    <include resource="logback/appender-file.xml" />
+    <include resource="logback/appender-stdout.xml" />
+
+    <!-- 自定义的配置放在这里 -->
+
+</configuration>

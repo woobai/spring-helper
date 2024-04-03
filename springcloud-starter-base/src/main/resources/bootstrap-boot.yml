@@ -1,0 +1,26 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    ### Whether a "NoHandlerFoundException" should be thrown if no Handler was found to process a request. default false
+    throw-exception-if-no-handler-found: true
+  resources:
+    ### Whether to enable default resource handling. default true
+    add-mappings: false
+
+### 脚手架配置
+fc:
+  boot:
+    mvc:
+      log:
+        excludePatterns: /,/error,/swagger-resources/**,/v2/**,/webjars/**,/**/*.css,/**/*.js,/**/*.html,/**/*.json,/**/*.txt,/**/*.map,/**/*.ttf,/**/*.png,/**/*.jpg,/favicon.ico,/actuator/**
+      trace:
+        excludePatterns: ${fc.boot.mvc.log.excludePatterns}
+    dependency:
+      version:
+        base: @gw-springcloud.base.version@
+        facade: @gw-springcloud.facade.version@
+        redis: @gw-springcloud.data.redis.version@
+        mybatis-plus: @gw-springcloud.data.mybatisplus.version@
+        datasource: @gw-springcloud.data.datasource.version@
+

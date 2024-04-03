@@ -1,0 +1,31 @@
+info:
+  env: ${env:local}
+  boot-group: '@project.parent.groupId@'
+  boot-name: '@project.parent.artifactId@'
+  boot-version: '@project.parent.version@'
+
+### Management config
+management:
+  info:
+    git:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: false
+  #健康检查
+  health:
+    db:
+      #关闭DB检查，只检查datasource
+      enabled: false
+    mail:
+      #关闭邮箱检查，防止连接泄漏
+      enabled: false
+    diskspace:
+      #关闭磁盘检查
+      enabled: false

@@ -1,0 +1,10 @@
+### Eureka Config
+eureka:
+  instance:
+    ### the IP address of the server should be used in preference to the hostname reported by the OS. default false
+    prefer-ip-address: true
+    ### 续约间隔 默认30s
+    lease-renewal-interval-in-seconds: 30
+  client:
+    ### Indicates how often(in seconds) to fetch the registry information from the eureka server. default 30s
+    registry-fetch-interval-seconds: 10

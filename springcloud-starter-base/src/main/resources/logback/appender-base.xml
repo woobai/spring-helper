@@ -1,0 +1,19 @@
+<included>
+
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+
+    <!-- MDC增强，新增ttl线程数据同步 -->
+    <contextListener class="com.fc.base.listener.logback.TtlMdcListener"/>
+
+    <!-- 默认应用名称 -->
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
+
+    <!-- 日志内容默认编码 -->
+    <springProperty scope="context" name="LOG_CHARSET" source="fc.boot.logfile.charset" defaultValue="UTF-8"/>
+
+    <logger name="springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator" level="OFF"/>
+    <logger name="org.springframework.jdbc.datasource.init.ScriptUtils" level="DEBUG"/>
+
+</included>
